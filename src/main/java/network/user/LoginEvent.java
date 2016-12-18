@@ -1,6 +1,5 @@
-package network.event;
+package network.user;
 
-import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +8,8 @@ import lombok.NoArgsConstructor;
 public class LoginEvent {
 
 	private String username;
-	private Date time;
 
 	public LoginEvent(String username) {
 		this.username = username;
-		time = new Date();
 	}
 }

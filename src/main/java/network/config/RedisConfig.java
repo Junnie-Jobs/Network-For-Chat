@@ -8,8 +8,10 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import redis.clients.jedis.Protocol;
 import redis.embedded.RedisServer;
+
 
 @Configuration
 public class RedisConfig {

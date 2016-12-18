@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="springChat">
-	<head>
-	  <meta charset="utf-8" />
-	  <title>Network Chatting</title>
-	  
-	  <link href="lib/flat-ui/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
-	  <link href="lib/flat-ui/dist/css/flat-ui.css" rel="stylesheet">
-	  <link href="css/chat.css" rel="stylesheet">	  
-	</head>
-	<body>
-		<div class="container">
-	  
-		          	<form method="post">
-			            <div class="form-group">
-			              <input type="text" class="form-control login-field" placeholder="Enter your name" name="username" />
-			              <label class="login-field-icon fui-user" for="login-name"> Username</label>
-			            </div>
-			            <div class="form-group">
-			              <input type="password" class="form-control login-field" name="password" />
-			              <label class="login-field-icon fui-lock" for="login-pass"> password </label>
-			            </div>
-			
-						<input class="btn btn-primary btn-lg btn-block"  type="submit" value="Log In"/>
-		            </form>
-		          </div>
+<head>
+<meta charset="utf-8" />
+<title>Network Chatting</title>
 
-	</body>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+<link href="css/chat.css" rel="stylesheet">
+<style>
+@import url('//fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+
+
+.header{
+	text-align: center;
+	font-family:Roboto;
+	font-size: 50px;
+	margin-top: 60px;
+}
+
+.login_form {
+  width: 300px;
+  margin: 80px auto 0 auto;
+}
+
+.login_form .submit_btn{
+	margin-left:100px;
+	margin-top: 30px;
+}
+</style>
+</head>
+<body>
+	<div class="header">Network Final Project</div>
+	<div class="login_form">
+		<form method="post">
+			<div>
+				<label for="username"> Username</label> <input type="text"
+					name="username" placeholder="이름을 입력해 주세요" />
+			</div>
+			<div>
+				<label for="password"> password </label> <input type="password"
+					name="password" placeholder="비밀번호를 입력해주세요" />
+			</div>
+			<input class="waves-effect waves-light btn submit_btn" type="submit" value="Login" />
+		</form>
+	</div>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+</body>
 </html>

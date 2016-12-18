@@ -5,57 +5,102 @@
 	  <title>Network Chatting</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	  <link href="lib/flat-ui/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
-	  <link href="lib/flat-ui/dist/css/flat-ui.css" rel="stylesheet">
-	  <link href="lib/angularjs-toaster/toaster.css" rel="stylesheet">
-      
-	  <link href="css/chat.css" rel="stylesheet">	  
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	  <style>
+	  
+	  .container{
+	  	width: 100%;
+	  }
+	  
+	  .container nav ul li{
+	  	float: right;
+	  }
+	  
+	  .container .userList{
+	  	width: 25%;
+	  	height: 500px;
+	  	float: left;
+	  	margin-left: 30px;
+	  }
+	  
+	  .container .chatArea{
+	  	width: 60%;
+	  	height: 500px;
+	  	float: left;
+	  	margin-left: 30px;
+	  	overflow: hidden;
+	  }
+	  
+	  .container .chatArea .textArea{
+	  	width: 100%;
+	  	height: 430px;
+	  	border: 1px solid #e0e0e0;
+	  	border-radius: 7px;
+	  	padding: 20px;
+	  }
+
+	  .userList .collection{
+	  	list-style: none;
+	  	margin: 0;
+	  	border-radius: 7px;
+	  }
+	  
+	  .chat_put{
+	  	width: 60%;
+	  	float: left;
+	  	margin-left: 30px;
+	  }
+	  
+	  .block{
+	  	width: 25%;
+	  	height: 1px;
+	  	float: left;
+	  	margin-left: 30px;
+	  }
+	  </style>
 	</head>
 	<body>
 		
 		<div class="container" ng-controller="ChatController">
-		<!-- 	<toaster-container></toaster-container>
-			 -->
-			<div class="row">
-				<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-		            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+		
+				<nav role="navigation">
 		              <ul class="nav navbar-nav navbar-right">           
-		                <li><a href="logout">Logout ({{username}})</a></li>
+		                <li><a href="logout">Logout</a></li>
 		               </ul>
-		            </div><!-- /.navbar-collapse -->
-		          </nav><!-- /navbar -->
-			</div>
-	        <div class="row">
-        		<div class="col-xs-4">
-        			<h4>친구들 [{{participants.length}}]</h4>
+		         </nav>
+		         
+	       <div class="row">
+        		<div class="userList">
+        			<h4> 접속자 [{{participants.length}}]</h4>
         			<div class="share">
-	        			<ul ng-repeat="participant in participants">
-	        				<li>
-	        					<span class="input-icon fui-new" ng-show="participant.typing"></span>
-	        					<span class="input-icon fui-user" ng-show="!participant.typing"></span>
-	        					<a href="" ng-click="privateSending(participant.username)">{{participant.username}}</a>
-	        					
-	        				</li>
-	        			</ul>
+	        			<li class="collection" ng-repeat="participant in participants">
+	        				<a class="collection-item" href="" ng-click="privateSending(participant.username)">{{participant.username}}</a>	        					
+	        			</li>
         			</div>
         		</div>
-        		<div class="col-xs-8 chat-box">
+        		
+        		<div class="chatArea">
         			<h4>채팅</h4>
-	        		<div ng-repeat="message in messages">
-	       	 			<small print-message></small>
+        			<div class="textArea">
+		        		<div class="chatBox" ng-repeat="message in messages">
+		       	 			<h5 print-message></h5>
+		      			</div>
 	      			</div>
         		</div>
         	</div>
-        	<div class="row">
-       			<div class="form-group">
-       			 
-				  <input id="newMessageInput" type="text" class="form-control" placeholder="메세지를 입력해주세요" ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()"/>
-				</div>
-        	</div>
+        	<div class="block"></div>
+       		<div class="chat_put">
+      				 <input id="newMessageInput" type="text" class="form-control" placeholder="메세지를 입력해주세요" ng-model="newMessage" ng-keyup="$event.keyCode == 13 ? sendMessage() : startTyping()"/>
+      		</div>
 	    </div>
-	    <!-- /.container -->
-	
-		<!-- 3rd party -->
+
+		<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 		<script src="lib/angular/angular.min.js"></script>
 	    <script src="lib/angular-animate/angular-animate.min.js"></script>
 	    <script src="lib/angularjs-toaster/toaster.js"></script>

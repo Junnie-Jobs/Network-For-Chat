@@ -1,5 +1,7 @@
 'use strict';
 
+/* Controllers */
+
 angular.module('springChat.controllers', ['toaster'])
 	.controller('ChatController', ['$scope', '$location', '$interval', 'toaster', 'ChatSocket', function($scope, $location, $interval, toaster, chatSocket) {
 		  
@@ -14,13 +16,18 @@ angular.module('springChat.controllers', ['toaster'])
 		$scope.sendMessage = function() {
 			var destination = "/app/chat.message";
 			
+			if($scope.sendTo != "everyone") {
+				destination = "/app/chat.private." + $scope.sendTo;
+				$scope.messages.unshift({message: $scope.newMessage, username: 'you', priv: true, to: $scope.sendTo});
+			}
+			
 			chatSocket.send(destination, {}, JSON.stringify({message: $scope.newMessage}));
 			$scope.newMessage = '';
 		};
 		
 		$scope.startTyping = function() {
 			// Don't send notification if we are still typing or we are typing a private message
-	        if (angular.isDefined(typing)) return;
+	        if (angular.isDefined(typing) || $scope.sendTo != "everyone") return;
 	        
 	        typing = $interval(function() {
 	                $scope.stopTyping();

@@ -1,4 +1,4 @@
-package network.event;
+package network.user;
 
 import java.util.Optional;
 
@@ -9,13 +9,9 @@ import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 
-// Listener to track user presence. 
-// Sends notifications to the login destination when a connected event is received
-// and notifications to the logout destination when a disconnect event is received
-
 public class PresenceEventListener {
 	
-	private ParticipantRepository participantRepository;
+	private UserRepository userRepository;
 	
 	private SimpMessagingTemplate messagingTemplate;
 	
@@ -23,9 +19,9 @@ public class PresenceEventListener {
 	
 	private String logoutDestination;
 	
-	public PresenceEventListener(SimpMessagingTemplate messagingTemplate, ParticipantRepository participantRepository) {
+	public PresenceEventListener(SimpMessagingTemplate messagingTemplate, UserRepository userRepository) {
 		this.messagingTemplate = messagingTemplate;
-		this.participantRepository = participantRepository;
+		this.userRepository = userRepository;
 	}
 		
 	@EventListener
@@ -36,17 +32,16 @@ public class PresenceEventListener {
 		LoginEvent loginEvent = new LoginEvent(username);
 		messagingTemplate.convertAndSend(loginDestination, loginEvent);
 		
-		// We store the session as we need to be idempotent in the disconnect event processing
-		participantRepository.add(headers.getSessionId(), loginEvent);
+		userRepository.add(headers.getSessionId(), loginEvent);
 	}
 	
 	@EventListener
 	private void handleSessionDisconnect(SessionDisconnectEvent event) {
 		
-		Optional.ofNullable(participantRepository.getParticipant(event.getSessionId()))
+		Optional.ofNullable(userRepository.getParticipant(event.getSessionId()))
 				.ifPresent(login -> {
 					messagingTemplate.convertAndSend(logoutDestination, new LogoutEvent(login.getUsername()));
-					participantRepository.removeParticipant(event.getSessionId());
+					userRepository.removeParticipant(event.getSessionId());
 				});
 	}
 

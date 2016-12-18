@@ -42,6 +42,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-redis")
+    
     compile("org.springframework.security:spring-security-messaging")
     compile("org.springframework.session:spring-session:$springSessionVersion")
     compile("org.apache.commons:commons-pool2:$commonsPoolVersion")
@@ -51,7 +52,7 @@ dependencies {
         exclude group: "io.netty", module: "netty-all"
     }
     compile("io.netty:netty-all:$nettyVersion")
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,10 +1,10 @@
-package network.event;
+package network.user;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-public class ParticipantRepository {
+public class UserRepository {
 
 	private Map<String, LoginEvent> activeSessions = new ConcurrentHashMap<>();
 

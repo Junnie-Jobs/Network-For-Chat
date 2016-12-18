@@ -1,4 +1,4 @@
-package network.event;
+package network.chat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogoutEvent {
-	private String username;
+public class ChatMessage {
 
+	private String username;
+	private String message;
 }

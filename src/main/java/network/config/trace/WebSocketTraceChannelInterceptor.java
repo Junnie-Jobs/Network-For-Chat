@@ -33,6 +33,7 @@ public class WebSocketTraceChannelInterceptor extends ChannelInterceptorAdapter 
 		
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(message);
 		
+		// Don't trace non-STOMP messages (like heartbeats)
 		if(headerAccessor.getCommand() == null) {
 			return;
 		}

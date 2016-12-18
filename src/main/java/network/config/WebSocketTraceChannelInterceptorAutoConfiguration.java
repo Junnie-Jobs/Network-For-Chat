@@ -2,7 +2,6 @@ package network.config;
 
 
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.trace.InMemoryTraceRepository;
@@ -34,7 +33,7 @@ public class WebSocketTraceChannelInterceptorAutoConfiguration {
 	
 	
 	@Bean
-	@Description("Spring Actuator endpoint to expose WebSocket traces")
+//	@Description("Spring Actuator endpoint to expose WebSocket traces")
 	public WebSocketTraceEndpoint websocketTraceEndpoint() {
 		return new WebSocketTraceEndpoint(traceRepository);
 	}
