@@ -1,7 +1,5 @@
 'use strict';
 
-/* Controllers */
-
 angular.module('springChat.controllers', ['toaster'])
 	.controller('ChatController', ['$scope', '$location', '$interval', 'toaster', 'ChatSocket', function($scope, $location, $interval, toaster, chatSocket) {
 		  

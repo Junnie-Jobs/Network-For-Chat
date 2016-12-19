@@ -1,7 +1,5 @@
 'use strict';
 
-/* Services */
-
 angular.module('springChat.services', [])
 	.factory('ChatSocket', ['$rootScope', function($rootScope) {
 			var stompClient;
