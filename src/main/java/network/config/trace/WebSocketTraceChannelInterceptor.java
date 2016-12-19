@@ -15,7 +15,6 @@ import org.springframework.messaging.support.NativeMessageHeaderAccessor;
 public class WebSocketTraceChannelInterceptor extends ChannelInterceptorAdapter {
 
 	private final TraceRepository traceRepository;
-
 	
 	public WebSocketTraceChannelInterceptor(TraceRepository traceRepository) {
 		this.traceRepository = traceRepository;

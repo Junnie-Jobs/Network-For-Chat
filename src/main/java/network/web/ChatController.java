@@ -14,21 +14,18 @@ import network.user.UserRepository;
 @Controller
 public class ChatController {
 
-	@Autowired 
+	@Autowired
 	private UserRepository userRepository;
-	
+
 	@SubscribeMapping("/chat.participants")
 	public Collection<LoginEvent> findActiveUsers() {
 		return userRepository.getActiveSessions().values();
 	}
-	
+
 	@MessageMapping("/chat.message")
 	public Chat filterMessage(@Payload Chat message, Principal principal) {
 		message.setUsername(principal.getName());
 		return message;
 	}
-	
-	
-	
 
 }

@@ -4,7 +4,6 @@ import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.springframework.beans.BeansException;
 import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
 import org.springframework.boot.context.properties.ConfigurationProperties;
