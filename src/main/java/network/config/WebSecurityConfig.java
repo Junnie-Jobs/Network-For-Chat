@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.logout()
-				.logoutSuccessUrl("http://junniejobs.xyz:8080//index.html")
+				.logoutSuccessUrl("http://junniejobs.xyz:8080/index.html")
 				.permitAll()
 				.and()
 			.authorizeRequests()
