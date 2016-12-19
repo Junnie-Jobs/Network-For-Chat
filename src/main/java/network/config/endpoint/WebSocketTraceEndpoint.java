@@ -6,7 +6,6 @@ import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
 import org.springframework.boot.actuate.trace.Trace;
 import org.springframework.boot.actuate.trace.TraceRepository;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.util.Assert;
 
 @ConfigurationProperties(prefix = "endpoints.websockettrace", ignoreUnknownFields = false)
 public class WebSocketTraceEndpoint extends AbstractEndpoint<List<Trace>> {
@@ -15,7 +14,6 @@ public class WebSocketTraceEndpoint extends AbstractEndpoint<List<Trace>> {
 
 	public WebSocketTraceEndpoint(TraceRepository repository) {
 		super("websockettrace");
-		Assert.notNull(repository, "Repository must not be null");
 		this.repository = repository;
 	}
 

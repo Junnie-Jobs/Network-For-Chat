@@ -9,25 +9,23 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
-import network.chat.ChatMessage;
+import network.chat.Chat;
 import network.user.LoginEvent;
 import network.user.UserRepository;
 
 @Controller
 public class ChatController {
 
-	
 	@Autowired 
 	private UserRepository userRepository;
 	
-	
 	@SubscribeMapping("/chat.participants")
-	public Collection<LoginEvent> retrieveParticipants() {
+	public Collection<LoginEvent> findActiveUsers() {
 		return userRepository.getActiveSessions().values();
 	}
 	
 	@MessageMapping("/chat.message")
-	public ChatMessage filterMessage(@Payload ChatMessage message, Principal principal) {
+	public Chat filterMessage(@Payload Chat message, Principal principal) {
 		message.setUsername(principal.getName());
 		return message;
 	}

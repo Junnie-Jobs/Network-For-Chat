@@ -8,8 +8,12 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class PresenceEventListener {
+@NoArgsConstructor
+@Data
+public class ConnectEventListener {
 	
 	private UserRepository userRepository;
 	
@@ -19,24 +23,22 @@ public class PresenceEventListener {
 	
 	private String logoutDestination;
 	
-	public PresenceEventListener(SimpMessagingTemplate messagingTemplate, UserRepository userRepository) {
+	public ConnectEventListener(SimpMessagingTemplate messagingTemplate, UserRepository userRepository) {
 		this.messagingTemplate = messagingTemplate;
 		this.userRepository = userRepository;
 	}
 		
 	@EventListener
-	private void handleSessionConnected(SessionConnectEvent event) {
+	private void whenSessionConnected(SessionConnectEvent event) {
 		SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
 		String username = headers.getUser().getName();
-
 		LoginEvent loginEvent = new LoginEvent(username);
 		messagingTemplate.convertAndSend(loginDestination, loginEvent);
-		
 		userRepository.add(headers.getSessionId(), loginEvent);
 	}
 	
 	@EventListener
-	private void handleSessionDisconnect(SessionDisconnectEvent event) {
+	private void whenSessionDisconnect(SessionDisconnectEvent event) {
 		
 		Optional.ofNullable(userRepository.getParticipant(event.getSessionId()))
 				.ifPresent(login -> {
@@ -45,11 +47,5 @@ public class PresenceEventListener {
 				});
 	}
 
-	public void setLoginDestination(String loginDestination) {
-		this.loginDestination = loginDestination;
-	}
 
-	public void setLogoutDestination(String logoutDestination) {
-		this.logoutDestination = logoutDestination;
-	}
 }

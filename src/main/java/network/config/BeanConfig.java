@@ -8,11 +8,11 @@ import org.springframework.web.socket.config.WebSocketMessageBrokerStats;
 
 import network.config.endpoint.MessageMappingEndpoint;
 import network.config.endpoint.WebSocketEndpoint;
-import network.user.PresenceEventListener;
+import network.user.ConnectEventListener;
 import network.user.UserRepository;
 
 @Configuration
-public class ChatConfig {
+public class BeanConfig {
 
 	public static class Destinations {
 		private Destinations() {
@@ -23,8 +23,8 @@ public class ChatConfig {
 	}
 
 	@Bean
-	public PresenceEventListener presenceEventListener(SimpMessagingTemplate messagingTemplate) {
-		PresenceEventListener presence = new PresenceEventListener(messagingTemplate, participantRepository());
+	public ConnectEventListener presenceEventListener(SimpMessagingTemplate messagingTemplate) {
+		ConnectEventListener presence = new ConnectEventListener(messagingTemplate, participantRepository());
 		presence.setLoginDestination(Destinations.LOGIN);
 		presence.setLogoutDestination(Destinations.LOGOUT);
 		return presence;

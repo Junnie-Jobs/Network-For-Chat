@@ -23,7 +23,6 @@ public class MessageMappingEndpoint extends AbstractEndpoint<Map<String, Object>
 
 	private ApplicationContext applicationContext;
 
-	
 	public MessageMappingEndpoint() {
 		super("websocketmappings");
 	}

@@ -23,9 +23,8 @@ angular.module('springChat.controllers', ['toaster'])
 			$scope.newMessage = '';
 		};
 		
-		$scope.startTyping = function() {
-			// Don't send notification if we are still typing or we are typing a private message
-	        if (angular.isDefined(typing) || $scope.sendTo != "everyone") return;
+		$scope.startTyping = function() {		
+	        if (angular.isDefined(typing)) return;
 	        
 	        typing = $interval(function() {
 	                $scope.stopTyping();

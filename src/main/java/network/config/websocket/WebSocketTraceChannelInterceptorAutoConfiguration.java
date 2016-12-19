@@ -1,4 +1,4 @@
-package network.config;
+package network.config.websocket;
 
 import javax.annotation.PostConstruct;
 
