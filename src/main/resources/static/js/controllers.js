@@ -12,10 +12,10 @@ angular.module('springChat.controllers', ['toaster'])
 		$scope.newMessage   = ''; 
 		  
 		$scope.sendMessage = function() {
-			var destination = "/app/chat.message";
+			var destination = "junniejos.xyz:8080/app/chat.message";
 			
 			if($scope.sendTo != "everyone") {
-				destination = "/app/chat.private." + $scope.sendTo;
+				destination = "junniejos.xyz:8080/app/chat.private." + $scope.sendTo;
 				$scope.messages.unshift({message: $scope.newMessage, username: 'you', priv: true, to: $scope.sendTo});
 			}
 			
@@ -31,7 +31,7 @@ angular.module('springChat.controllers', ['toaster'])
 	                $scope.stopTyping();
 	            }, 500);
 	        
-	        chatSocket.send("/topic/chat.typing", {}, JSON.stringify({username: $scope.username, typing: true}));
+	        chatSocket.send("junniejos.xyz:8080/topic/chat.typing", {}, JSON.stringify({username: $scope.username, typing: true}));
 		};
 		
 		$scope.stopTyping = function() {
@@ -39,7 +39,7 @@ angular.module('springChat.controllers', ['toaster'])
 		        $interval.cancel(typing);
 		        typing = undefined;
 		        
-		        chatSocket.send("/topic/chat.typing", {}, JSON.stringify({username: $scope.username, typing: false}));
+		        chatSocket.send("junniejos.xyz:8080/topic/chat.typing", {}, JSON.stringify({username: $scope.username, typing: false}));
 			}
 		};
 		
@@ -48,21 +48,21 @@ angular.module('springChat.controllers', ['toaster'])
 		};
 			
 		var initStompClient = function() {
-			chatSocket.init('/ws');
+			chatSocket.init('junniejos.xyz:8080/ws');
 			
 			chatSocket.connect(function(frame) {
 				  
 				$scope.username = frame.headers['user-name'];
 
-				chatSocket.subscribe("/app/chat.participants", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/app/chat.participants", function(message) {
 					$scope.participants = JSON.parse(message.body);
 				});
 				  
-				chatSocket.subscribe("/topic/chat.login", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/topic/chat.login", function(message) {
 					$scope.participants.unshift({username: JSON.parse(message.body).username, typing : false});
 				});
 		        	 
-				chatSocket.subscribe("/topic/chat.logout", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/topic/chat.logout", function(message) {
 					var username = JSON.parse(message.body).username;
 					for(var index in $scope.participants) {
 						if($scope.participants[index].username == username) {
@@ -71,7 +71,7 @@ angular.module('springChat.controllers', ['toaster'])
 					}
 		        });
 		        	 
-				chatSocket.subscribe("/topic/chat.typing", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/topic/chat.typing", function(message) {
 					var parsed = JSON.parse(message.body);
 					if(parsed.username == $scope.username) return;
 				  					
@@ -84,17 +84,17 @@ angular.module('springChat.controllers', ['toaster'])
 				  	} 
 				});
 		        	 
-				chatSocket.subscribe("/topic/chat.message", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/topic/chat.message", function(message) {
 					$scope.messages.unshift(JSON.parse(message.body));
 		        });
 				  
-				chatSocket.subscribe("/user/exchange/amq.direct/chat.message", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/user/exchange/amq.direct/chat.message", function(message) {
 					var parsed = JSON.parse(message.body);
 					parsed.priv = true;
 					$scope.messages.unshift(parsed);
 		        });
 				  
-				chatSocket.subscribe("/user/exchange/amq.direct/errors", function(message) {
+				chatSocket.subscribe("junniejos.xyz:8080/user/exchange/amq.direct/errors", function(message) {
 					toaster.pop('error', "Error", message.body);
 		        });
 		          
