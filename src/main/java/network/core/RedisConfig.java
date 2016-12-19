@@ -1,4 +1,4 @@
-package network.config;
+package network.core;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 import redis.clients.jedis.Protocol;
 import redis.embedded.RedisServer;
-
 
 @Configuration
 public class RedisConfig {

@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import network.config.WebSocketTraceChannelInterceptorAutoConfiguration;
+import network.core.WebSocketTraceChannelInterceptorAutoConfiguration;
 
 @SpringBootApplication
 @Import(WebSocketTraceChannelInterceptorAutoConfiguration.class)

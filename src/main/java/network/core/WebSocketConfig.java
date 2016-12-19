@@ -1,4 +1,4 @@
-package network.config;
+package network.core;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

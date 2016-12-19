@@ -1,4 +1,4 @@
-package network.config;
+package network.core;
 
 import java.util.List;
 
@@ -22,8 +22,6 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final String SECURE_ADMIN_PASSWORD = "rockandroll";
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http

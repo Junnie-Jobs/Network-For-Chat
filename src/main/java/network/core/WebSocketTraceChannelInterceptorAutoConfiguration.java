@@ -1,4 +1,4 @@
-package network.config;
+package network.core;
 
 
 import javax.annotation.PostConstruct;
