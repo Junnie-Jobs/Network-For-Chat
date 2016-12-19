@@ -13,11 +13,6 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.ChannelInterceptorAdapter;
 import org.springframework.messaging.support.NativeMessageHeaderAccessor;
 
-/**
- * {@link ChannelInterceptor} that logs messages to a {@link TraceRepository}.
- *
- * @author Sergi Almar
- */
 public class WebSocketTraceChannelInterceptor extends ChannelInterceptorAdapter {
 
 	private final TraceRepository traceRepository;
@@ -33,7 +28,6 @@ public class WebSocketTraceChannelInterceptor extends ChannelInterceptorAdapter 
 		
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(message);
 		
-		// Don't trace non-STOMP messages (like heartbeats)
 		if(headerAccessor.getCommand() == null) {
 			return;
 		}

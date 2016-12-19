@@ -2,14 +2,13 @@ package network.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Description;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.socket.config.WebSocketMessageBrokerStats;
 
 import network.config.endpoint.MessageMappingEndpoint;
 import network.config.endpoint.WebSocketEndpoint;
-import network.user.UserRepository;
 import network.user.PresenceEventListener;
+import network.user.UserRepository;
 
 @Configuration
 public class ChatConfig {
