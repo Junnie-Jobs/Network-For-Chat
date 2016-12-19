@@ -33,7 +33,7 @@ public class WebSocketTraceChannelInterceptorAutoConfiguration {
 	
 	
 	@Bean
-//	@Description("Spring Actuator endpoint to expose WebSocket traces")
+	@Description("Spring Actuator endpoint to expose WebSocket traces")
 	public WebSocketTraceEndpoint websocketTraceEndpoint() {
 		return new WebSocketTraceEndpoint(traceRepository);
 	}
