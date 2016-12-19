@@ -3,6 +3,7 @@ package network.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.support.ExecutorSubscribableChannel;
 import org.springframework.web.socket.config.WebSocketMessageBrokerStats;
 
 import network.config.endpoint.MessageMappingEndpoint;
@@ -42,5 +43,10 @@ public class ChatConfig {
 	@Bean
 	public MessageMappingEndpoint messageMappingEndpoint() {
 		return new MessageMappingEndpoint();
+	}
+	
+	@Bean
+	public ExecutorSubscribableChannel executorSubscribableChannel(){
+		return new ExecutorSubscribableChannel();
 	}
 }
