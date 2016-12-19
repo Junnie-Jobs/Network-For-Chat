@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springChat.socketConfig', [])
+angular.module('networkChat.socketConfig', [])
 	.factory('ChatSocket', ['$rootScope', function($rootScope) {
 			var stompClient;
 			

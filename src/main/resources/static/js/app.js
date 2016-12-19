@@ -1,3 +1,3 @@
-var springChat = angular.module('springChat', ['springChat.controllers',
-                                               'springChat.socketConfig',
-                                               'springChat.messages']);
+var networkChat = angular.module('networkChat', ['networkChat.controllers',
+                                               'networkChat.socketConfig',
+                                               'networkChat.messages']);

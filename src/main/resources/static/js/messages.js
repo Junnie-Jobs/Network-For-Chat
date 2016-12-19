@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('springChat.messages', [])
+angular.module('networkChat.messages', [])
 	.directive('printMessage', function () {
 	    return {
-	        template: '<span ng-show="message.priv">[private] </span><strong>{{message.username}}<span ng-show="message.to"> -> {{message.to}}</span>:</strong> {{message.message}}<br/>'
+	        template: '<strong>{{message.username}}<span ng-show="message.to"> -> {{message.to}}</span>:</strong> {{message.message}}<br/>'
 	       
 	    };
 });

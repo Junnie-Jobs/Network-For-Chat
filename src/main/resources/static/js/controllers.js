@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('springChat.controllers', ['toaster'])
+angular.module('networkChat.controllers', ['toaster'])
 	.controller('ChatController', ['$scope', '$location', '$interval', 'toaster', 'ChatSocket', function($scope, $location, $interval, toaster, chatSocket) {
 		  
 		var typing = undefined;
@@ -37,8 +37,7 @@ angular.module('springChat.controllers', ['toaster'])
 		};
 			
 		var initStompClient = function() {
-			chatSocket.init('/ws');
-			
+			chatSocket.init('/ws');	
 			chatSocket.connect(function(frame) {
 				  
 				$scope.username = frame.headers['user-name'];
@@ -53,9 +52,9 @@ angular.module('springChat.controllers', ['toaster'])
 		        	 
 				chatSocket.subscribe("/topic/chat.logout", function(message) {
 					var username = JSON.parse(message.body).username;
-					for(var index in $scope.participants) {
-						if($scope.participants[index].username == username) {
-							$scope.participants.splice(index, 1);
+					for(var i in $scope.participants) {
+						if($scope.participants[i].username == username) {
+							$scope.participants.splice(i, 1);
 						}
 					}
 		        });
@@ -92,7 +91,6 @@ angular.module('springChat.controllers', ['toaster'])
 				
 		    });
 		};
-		  
 		initStompClient();
 	}]);
 	
