@@ -9,6 +9,7 @@ import org.springframework.boot.actuate.trace.InMemoryTraceRepository;
 import org.springframework.boot.actuate.trace.TraceRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
 import org.springframework.messaging.support.ExecutorSubscribableChannel;
 
 import network.config.endpoint.WebSocketTraceEndpoint;
