@@ -1,4 +1,4 @@
-package network.core;
+package network.config;
 
 import java.util.List;
 

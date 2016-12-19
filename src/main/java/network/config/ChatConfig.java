@@ -1,4 +1,4 @@
-package network.core;
+package network.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,4 @@
-package network.core;
-
+package network.config;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.messaging.support.ExecutorSubscribableChannel;
-
 import network.config.endpoint.WebSocketTraceEndpoint;
 import network.config.trace.WebSocketTraceChannelInterceptor;
 

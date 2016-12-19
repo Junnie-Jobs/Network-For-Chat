@@ -46,13 +46,12 @@ dependencies {
     compile("org.springframework.session:spring-session:$springSessionVersion")
     compile("org.apache.commons:commons-pool2:$commonsPoolVersion")
     compile("com.github.kstyrc:embedded-redis:$redisVersion")
-    
     compile("io.projectreactor:reactor-core:${reactorVersion}")
     compile("io.projectreactor:reactor-net:${reactorVersion}") {
         exclude group: "io.netty", module: "netty-all"
     }
     compile("io.netty:netty-all:$nettyVersion")
-     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
