@@ -12,13 +12,7 @@ angular.module('springChat.controllers', ['toaster'])
 		$scope.newMessage   = ''; 
 		  
 		$scope.sendMessage = function() {
-			var destination = "/app/chat.message";
-			
-			if($scope.sendTo != "everyone") {
-				destination = "/app/chat.private." + $scope.sendTo;
-				$scope.messages.unshift({message: $scope.newMessage, username: 'you', priv: true, to: $scope.sendTo});
-			}
-			
+			var destination = "/app/chat.message";	
 			chatSocket.send(destination, {}, JSON.stringify({message: $scope.newMessage}));
 			$scope.newMessage = '';
 		};
@@ -40,10 +34,6 @@ angular.module('springChat.controllers', ['toaster'])
 		        
 		        chatSocket.send("/topic/chat.typing", {}, JSON.stringify({username: $scope.username, typing: false}));
 			}
-		};
-		
-		$scope.privateSending = function(username) {
-				$scope.sendTo = (username != $scope.sendTo) ? username : 'everyone';
 		};
 			
 		var initStompClient = function() {
